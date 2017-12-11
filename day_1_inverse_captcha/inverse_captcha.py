@@ -50,8 +50,6 @@ def inverseCaptcha2(numbers):
                 # no coincide
                 pass
 
-
-    print("Final: ", finalSum)
     return finalSum
 
 #print(inverseCaptcha2('1212'))
