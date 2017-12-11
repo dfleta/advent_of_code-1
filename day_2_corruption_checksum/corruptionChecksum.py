@@ -59,11 +59,28 @@ def checksum(row):
 
     return highNum(row) - lowNum(row)
 
+def getNumberOfDivisor(row):
+    """
+    Recibe una fila de la matriz, busca los dos divisores y devuelve el resultado de la división
+    :param row: recibe una fila de la matriz
+    :return: devuelve el resultado del único posible caso de división
+    """
+    finalValue=0
+
+    for number in row:
+        for divisor in row:
+            if number != divisor:
+                if number % divisor == 0:
+                    return number/divisor
+
+
+    return finalValue
+
 def sumOfChecksum(lista):
     """
-    Función principal. Devolverá la suma de los checksum
-    :param lista: entra una lita de strings
-    :return: devolverá la suma de los checksum de la matriz
+    Función principal del apartado 1. Devolverá la suma de los checksum
+    :param lista: entra una lista de strings
+    :return: devolverá la suma de los checksum de la matriz en forma de int
     """
     totalValue = 0
     #Transformamos la lista de str a lista de ints para poder sumar los valores
@@ -72,15 +89,23 @@ def sumOfChecksum(lista):
     for row in lista:
         totalValue += checksum(row)
 
-    print(totalValue)
+    return totalValue
+
+def sumOfChecksum2(lista):
+    """
+    Función principal del apartado 2. Devolverá la suma de los checksum
+    :param lista: entra una lista de strings
+    :return: devolverá la suma de los checksum de la matriz en forma de int
+    """
+    totalValue = 0
+    # Transformamos la lista de str a lista de ints para poder sumar los valores
+    listStrToInt(lista)
+    for row in lista:
+        totalValue += getNumberOfDivisor(row)
+
+    return int(float(totalValue))
 
 
 lista = readTxt('puzzle.txt')
-sumOfChecksum(lista)
-
-"""
-listStrToInt(lista)
-highNum(lista[0])
-lowNum(lista[0])
-checksum(lista[0])
-"""
+print(sumOfChecksum(lista))
+print(sumOfChecksum2(lista))
